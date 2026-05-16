@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nancy J. Wu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #F8F6F2;
+      color: #1a1a1a;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 16.5px;
+      line-height: 1.82;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 3.2rem;
+    }
+
+    .photo-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #E2DDD7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 2.2rem;
+      color: #b0a898;
+      flex-shrink: 0;
+    }
+
+    .photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .header-text { padding-top: 0.3rem; }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #111;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.83rem;
+      font-weight: 300;
+      color: #888;
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      margin-bottom: 0.9rem;
+    }
+
+    .contact-line {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
+
+    .contact-line a {
+      color: #888;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .contact-line a:hover { color: #333; border-color: #555; }
+
+    .bio { margin-bottom: 3.5rem; }
+
+    .bio p {
+      margin-bottom: 1.45em;
+      color: #222;
+    }
+
+    .bio p:last-child { margin-bottom: 0; }
+
+    .bio a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: #bbb;
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s;
+    }
+
+    .bio a:hover { text-decoration-color: #555; }
+
+    .conference-line {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.83rem;
+      font-weight: 300;
+      color: #888;
+      font-style: italic;
+      margin-top: -0.6em;
+      margin-bottom: 1.45em;
+    }
+
+    .conference-line a {
+      color: #888;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 3px;
+      font-style: normal;
+    }
+
+    .conference-line a:hover { color: #333; text-decoration-color: #666; }
+
+    sup {
+      font-size: 0.62em;
+      vertical-align: super;
+      line-height: 0;
+      font-family: 'DM Sans', sans-serif;
+      color: #aaa;
+      margin-left: 1px;
+    }
+
+    sup a { color: #aaa !important; text-decoration: none !important; }
+    sup a:hover { color: #444 !important; }
+
+    .footnotes {
+      border-top: 1px solid #ddd;
+      padding-top: 1.6rem;
+    }
+
+    .fn-group-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 0.85rem;
+    }
+
+    .fn-list + .fn-group-label { margin-top: 1.4rem; }
+
+    .fn-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .fn-list li {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.79rem;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.6;
+      display: grid;
+      grid-template-columns: 1.1rem 1fr;
+      gap: 0.35rem;
+    }
+
+    .fn-num { color: #ccc; font-size: 0.7rem; padding-top: 0.1em; }
+
+    .fn-list a {
+      color: #888;
+      text-decoration: underline;
+      text-decoration-color: #ccc;
+      text-underline-offset: 2px;
+    }
+
+    .fn-list a:hover { color: #333; text-decoration-color: #777; }
+
+    @media (max-width: 520px) {
+      .page { padding: 3rem 1.3rem 4rem; }
+      .header { grid-template-columns: 88px 1fr; gap: 1.2rem; }
+      .photo-placeholder, .photo { width: 88px; height: 88px; }
+      h1 { font-size: 1.4rem; }
+      body { font-size: 15.5px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="photo-placeholder">N</div>
+    <div class="header-text">
+      <h1>Nancy J. Wu</h1>
+      <div class="subtitle">
+        PhD Student, Public Administration &amp; Policy<br>
+        Rockefeller College · University at Albany, SUNY
+      </div>
+      <div class="contact-line">
+        <a href="mailto:jwu34@albany.edu">jwu34@albany.edu</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bio">
+
+    <p>
+      I study what happens when governments automate. Algorithmic decision
+      systems, generative AI, large language models, and blockchain are
+      reshaping public administration—not neutrally. My research asks
+      who benefits, and who bears the costs.
+    </p>
+
+    <p>
+      My central concern is equity. I approach it through three lenses.
+      At the level of <em>frontline public servants</em>, I examine how
+      artificial intelligence transforms the nature of work, the skills
+      required, and professional identity.<sup><a href="#fn1">1</a></sup>
+      Turning to <em>the people organizations serve</em>, I ask how
+      <a href="https://doi.org/10.1145/3657054.3657132" target="_blank">digital
+      channels shape citizens' access to and engagement with
+      government</a><sup><a href="#fn2">2</a></sup> and how race and
+      deservingness shape
+      <a href="#fn5">the allocation of administrative
+      burdens</a>.<sup><a href="#fn5">5</a></sup>
+      Looking at <em>the technologies themselves</em>: how
+      <a href="https://doi.org/10.1038/s42949-026-00380-7" target="_blank">large
+      language models encode historical inequities into contemporary urban
+      policy</a>,<sup><a href="#fn3">3</a></sup> how
+      <a href="https://doi.org/10.5465/AMPROC.2024.13604symposium" target="_blank">blockchain
+      restructures the efficiency and accountability of judicial
+      systems</a>,<sup><a href="#fn4">4</a></sup> and whether
+      <a href="#fn6">generative AI replicates these patterns</a> in welfare
+      eligibility decisions.<sup><a href="#fn6">6</a></sup>
+    </p>
+
+    <p>
+      I am a Research Assistant at the
+      <a href="https://www.ctg.albany.edu/" target="_blank">Center for Technology
+      in Government (CTG UAlbany)</a>, working under Prof. Mila Gasco-Hernandez.
+    </p>
+
+    <p class="conference-line">
+      You can find me presenting at
+      <a href="https://dgo.computersociety.org/2026/" target="_blank">dg.o 2026</a>
+      (Omaha, NE, June 1–4) and
+      <a href="https://pmranet.org/conference/" target="_blank">PMRC 2026</a>
+      (Washington, DC, June 6).
+    </p>
+
+    <p>
+      Prior to joining Albany, I completed my first year of doctoral study
+      at Arizona State University. I studied as an MPhil student in
+      Innovation, Policy and Entrepreneurship at the Hong Kong University
+      of Science and Technology (Guangzhou). My undergraduate study was at
+      Zhejiang University, where I majored in International Politics.
+    </p>
+
+  </div>
+
+  <div class="footnotes">
+
+    <div class="fn-group-label">Published</div>
+    <ol class="fn-list">
+
+      <li id="fn2">
+        <span class="fn-num">2</span>
+        <span>
+          Wu, J., Wang, R., Yang, J., &amp; Xu, C. K. (2024).
+          <a href="https://doi.org/10.1145/3657054.3657132" target="_blank">The
+          role of issue characteristics in shaping e-participation: A survey
+          experiment approach.</a>
+          <em>Proceedings of dg.o '24</em>, ACM, pp. 659–668.
+        </span>
+      </li>
+
+      <li id="fn3">
+        <span class="fn-num">3</span>
+        <span>
+          Howell, A., Wu, N. J., Bagchi, S., Kim, Y., &amp; Sun, C. (2026).
+          <a href="https://doi.org/10.1038/s42949-026-00380-7" target="_blank">Multimodal
+          large language models, street view images and urban policy-intelligence:
+          recovering the sustainability effects of redlining.</a>
+          <em>npj Urban Sustainability.</em>
+        </span>
+      </li>
+
+      <li id="fn4">
+        <span class="fn-num">4</span>
+        <span>
+          Wu, N. J., Polzer, T., Steiner, R., Gasco-Hernandez, M., &amp;
+          Buyannemekh, B. (2024).
+          <a href="https://doi.org/10.5465/AMPROC.2024.13604symposium" target="_blank">Digital
+          transformation in and of local governments – variations on a global
+          theme.</a>
+          <em>Academy of Management Proceedings</em>, 2024(1), 13604.
+        </span>
+      </li>
+
+    </ol>
+
+    <div class="fn-group-label">Forthcoming &amp; Under Review</div>
+    <ol class="fn-list">
+
+      <li id="fn1">
+        <span class="fn-num">1</span>
+        <span>
+          "Reimagining the Public Servant: Professional Identity and Skill
+          Adaptation in the AI Era" (with M. Gasco-Hernandez &amp; L. Hand).
+          <em>PMRC 2026</em>, Washington, DC — June 6, 10:30 am–12:00 pm,
+          Kerwin 204.
+        </span>
+      </li>
+
+      <li id="fn5">
+        <span class="fn-num">5</span>
+        <span>
+          Miller, S., Keiser, L., &amp; Wu, N. J. Conditional deservingness:
+          How deservingness and race shape views toward administrative burdens.
+          Under review.
+        </span>
+      </li>
+
+      <li id="fn6">
+        <span class="fn-num">6</span>
+        <span>
+          Wu, N. J. Automating inequality? Generative AI and the persistence of
+          bias in welfare eligibility decisions. Accepted,
+          <em>dg.o 2026</em>, University of Nebraska at Omaha, June 1–4.
+        </span>
+      </li>
+
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>
